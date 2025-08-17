@@ -32,7 +32,7 @@ service.interceptors.response.use(
     } else {
       console.error('网络错误或配置错误')
     }
-    return Promise.reject(error)
+    return Promise.reject(error.response.data)
   },
 )
 

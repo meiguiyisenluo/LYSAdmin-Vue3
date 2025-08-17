@@ -76,18 +76,19 @@ const onSubmit = async () => {
     registerLoading.value = true
     register(formData)
       .then((res: any) => {
-        if (res?.status !== '200') {
-          return ElNotification({
-            title: 'Error',
-            message: res?.message,
-          })
-        }
         ElNotification({
           title: 'Success',
-          message: 'Register Success, Please Login',
+          message: res?.message ?? 'Register Success, Please Login',
         })
         formRef.value?.resetFields()
         emit('registerSuccess')
+      })
+      .catch((err) => {
+        console.log(err)
+        ElNotification({
+          title: 'Error',
+          message: err?.message ?? 'Register Failed',
+        })
       })
       .finally(() => {
         registerLoading.value = false
