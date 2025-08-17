@@ -1,6 +1,8 @@
 <template>
   <el-tabs v-model="activeName" class="login-tabs">
-    <el-tab-pane label="Login" name="Login">Login</el-tab-pane>
+    <el-tab-pane label="Login" name="Login">
+      <LoginView @loginSuccess="loginSuccess" />
+    </el-tab-pane>
     <el-tab-pane label="Register" name="Register">
       <RegisterView @registerSuccess="activeName = 'Login'" />
     </el-tab-pane>
@@ -9,8 +11,20 @@
 
 <script lang="ts" setup>
 import { ref } from 'vue'
+import LoginView from './LoginView.vue'
 import RegisterView from './RegisterView.vue'
+import router from '@/router'
 const activeName = ref('Login')
+import type { User } from '@/stores/user'
+
+import useLogin from '@/hooks/useLogin'
+const { login } = useLogin()
+
+const loginSuccess = (user: User, token: string) => {
+  login(token, user)
+
+  router.push({ path: '/' })
+}
 </script>
 
 <style scoped>
