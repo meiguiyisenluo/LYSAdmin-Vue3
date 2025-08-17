@@ -32,6 +32,10 @@ service.interceptors.response.use(
           console.error('未授权，请重新登录')
           logout()
           break
+        case 403:
+          console.error('授权已过期')
+          logout()
+          break
         case 404:
           console.error('资源不存在')
           break
