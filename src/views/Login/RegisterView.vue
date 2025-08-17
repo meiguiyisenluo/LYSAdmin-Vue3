@@ -84,7 +84,6 @@ const onSubmit = async () => {
         emit('registerSuccess')
       })
       .catch((err) => {
-        console.log(err)
         ElNotification({
           title: 'Error',
           message: err?.message ?? 'Register Failed',
