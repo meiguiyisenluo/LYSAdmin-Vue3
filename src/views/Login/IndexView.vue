@@ -1,5 +1,8 @@
 <template>
   <el-tabs v-model="activeName" class="login-tabs">
+    <el-tab-pane label="WXLogin" name="WXLogin" v-if="false">
+      <WXLoginView @loginSuccess="loginSuccess" />
+    </el-tab-pane>
     <el-tab-pane label="Login" name="Login">
       <LoginView @loginSuccess="loginSuccess" />
     </el-tab-pane>
@@ -12,6 +15,7 @@
 <script lang="ts" setup>
 import { ref } from 'vue'
 import LoginView from './LoginView.vue'
+import WXLoginView from './WXLoginView.vue'
 import RegisterView from './RegisterView.vue'
 import router from '@/router'
 const activeName = ref('Login')
