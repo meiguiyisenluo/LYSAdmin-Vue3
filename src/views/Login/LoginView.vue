@@ -50,16 +50,18 @@ const onSubmit = async () => {
     login(formData)
       .then(({ headers, data }) => {
         ElNotification({
-          title: 'Success',
+          title: 'Login Success',
           message: headers['lys-message'] ?? 'Login Success',
+          type: 'success',
         })
         formRef.value?.resetFields()
         emit('loginSuccess', data, headers['lys-token'])
       })
       .catch(({ headers }) => {
         ElNotification({
-          title: 'Error',
+          title: 'Login Failed',
           message: headers['lys-message'] ?? 'Login Failed',
+          type: 'error',
         })
       })
       .finally(() => {

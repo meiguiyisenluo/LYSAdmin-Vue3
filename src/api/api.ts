@@ -26,25 +26,37 @@ service.interceptors.request.use(
 service.interceptors.response.use(
   (response: AxiosResponse) => response,
   (error) => {
+    let message = undefined
     if (error.response) {
       switch (error.response.status) {
         case 401:
-          console.error('未授权，请重新登录')
+          message = '未授权，请重新登录'
           logout()
           break
         case 403:
-          console.error('授权已过期')
+          message = '授权已过期'
           logout()
           break
         case 404:
-          console.error('资源不存在')
+          message = '资源不存在'
+
           break
         default:
-          console.error('请求失败')
+          message = '请求失败'
       }
     } else {
-      console.error('网络错误或配置错误')
+      message = '网络错误或配置错误'
     }
+
+    if (message) {
+      ElNotification({
+        title: 'Network Error' + error.response.status,
+        message,
+        type: 'error',
+      })
+      return new Promise(() => {})
+    }
+
     return Promise.reject(error.response)
   },
 )

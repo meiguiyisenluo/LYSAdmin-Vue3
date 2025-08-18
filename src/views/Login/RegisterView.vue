@@ -73,16 +73,18 @@ const onSubmit = async () => {
     register(formData)
       .then(({ headers }) => {
         ElNotification({
-          title: 'Success',
+          title: 'Register Success',
           message: headers['lys-message'] ?? 'Register Success, Please Login',
+          type: 'success',
         })
         formRef.value?.resetFields()
         emit('registerSuccess')
       })
       .catch(({ headers }) => {
         ElNotification({
-          title: 'Error',
+          title: 'Register Failed',
           message: headers['lys-message'] ?? 'Register Failed',
+          type: 'error',
         })
       })
       .finally(() => {
