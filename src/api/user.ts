@@ -7,3 +7,15 @@ export const getUserList = () => {
     method: 'get',
   })
 }
+
+// 更新用户信息接口
+export const updateUser = (
+  id: number,
+  data: { nickname?: string; email?: string; avatar?: string },
+) => {
+  return service({
+    url: '/user/update/' + id,
+    method: 'post',
+    data,
+  })
+}

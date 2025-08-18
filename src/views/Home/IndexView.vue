@@ -1,7 +1,8 @@
 <template>
   <div>{{ user.nickname || user.username }}</div>
   <ElButton type="primary" @click="logout">logout</ElButton>
-  <LYSUploader @success="openImage" />
+  <LYSUploader @success="onUploadSuccess" />
+  <ElButton type="primary" @click="update">update</ElButton>
 </template>
 
 <script lang="ts" setup>
@@ -11,13 +12,21 @@ import useLogin from '@/hooks/useLogin'
 const { logout } = useLogin()
 import LYSUploader from '@/components/LYSUploader.vue'
 
-import { getUserList } from '@/api/user'
+import { getUserList, updateUser } from '@/api/user'
+import { ref } from 'vue'
 
 getUserList().then(({ data }) => {
   console.log(data)
 })
 
-const openImage = (res: { url: string }) => window.open(res.url)
+const avatarUrl = ref('')
+const onUploadSuccess = (res: { url: string }) => {
+  avatarUrl.value = res.url
+}
+const update = () => {
+  if (!avatarUrl.value) return
+  updateUser(user.id, { avatar: avatarUrl.value })
+}
 </script>
 
 <style scoped></style>
