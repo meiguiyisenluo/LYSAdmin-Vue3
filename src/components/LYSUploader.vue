@@ -10,7 +10,7 @@
     method="put"
   >
     <img v-if="imageUrl" :src="imageUrl" class="avatar" />
-    <el-icon v-else class="avatar-uploader-icon"><i-ep-plus /></el-icon>
+    <el-icon v-else class="avatar-uploader-icon"><Plus /></el-icon>
   </el-upload>
 </template>
 
@@ -19,6 +19,7 @@ const emit = defineEmits(['success'])
 import { ref } from 'vue'
 
 import type { UploadProps } from 'element-plus'
+import { Plus } from '@element-plus/icons-vue'
 
 const imageUrl = ref('')
 

@@ -1,4 +1,6 @@
 <template>
+  <el-table mb-1 :data="[]" />
+  <el-pagination :total="100" />
   <div>{{ user.nickname || user.username }}</div>
   <ElButton type="primary" @click="logout">logout</ElButton>
   <LYSUploader @success="onUploadSuccess" />

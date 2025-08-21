@@ -21,6 +21,8 @@ import { login } from '@/api/login'
 import { reactive } from 'vue'
 import type { FormInstance, FormRules } from 'element-plus'
 
+import { ElNotification } from 'element-plus'
+
 const emit = defineEmits(['loginSuccess'])
 const loading = ref(false)
 const formRef = ref<FormInstance>()
