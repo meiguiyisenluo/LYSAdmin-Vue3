@@ -1,17 +1,13 @@
 <template>
-  <el-table mb-1 :data="[]" />
-  <el-pagination :total="100" />
-  <div>{{ user.nickname || user.username }}</div>
-  <ElButton type="primary" @click="logout">logout</ElButton>
   <LYSUploader @success="onUploadSuccess" />
   <ElButton type="primary" @click="update">update</ElButton>
+  <el-table mb-1 :data="[]" />
+  <el-pagination :total="100" />
 </template>
 
 <script lang="ts" setup>
 import { useUserStore } from '@/stores/user'
 const { user } = useUserStore()
-import useLogin from '@/hooks/useLogin'
-const { logout } = useLogin()
 import LYSUploader from '@/components/LYSUploader.vue'
 
 import { getUserList, updateUser } from '@/api/user'
