@@ -5,7 +5,7 @@ import { useDark } from '@vueuse/core'
 
 const isDark = useDark()
 
-import { Sunny, Moon, ArrowDown } from '@element-plus/icons-vue'
+import { Sunny, Moon } from '@element-plus/icons-vue'
 
 import useLogin from '@/hooks/useLogin'
 const { logout } = useLogin()
