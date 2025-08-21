@@ -3,3 +3,8 @@
   to = "https://gouyunvps.1591420.xyz:3000/:splat"
   status = 200
   force = true
+  
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
