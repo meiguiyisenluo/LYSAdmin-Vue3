@@ -1,4 +1,5 @@
 <template>
+  <div>{{ $t('hello') }}</div>
   <LYSUploader @success="onUploadSuccess" />
   <ElButton type="primary" @click="update">update</ElButton>
   <el-table mb-1 :data="[]" />

@@ -1,9 +1,10 @@
 <script setup lang="ts">
-import { locale } from '@/utils/I18n'
+import { useI18nStore } from '@/stores/I18n'
+const i18nStore = useI18nStore()
 </script>
 
 <template>
-  <el-config-provider :locale="locale">
+  <el-config-provider :locale="i18nStore.elLocale">
     <RouterView />
   </el-config-provider>
 </template>

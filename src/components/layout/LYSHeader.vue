@@ -1,8 +1,16 @@
 <script setup lang="ts">
-import { language, mapObj, setLanguage } from '@/utils/I18n'
+import { useI18nStore, languages } from '@/stores/I18n'
+import type { Lang } from '@/stores/I18n'
+const i18nStore = useI18nStore()
+import { useI18n } from 'vue-i18n'
+const { locale } = useI18n({ useScope: 'global' })
+locale.value = i18nStore.language.value
+const setLanguage = (command: Lang) => {
+  locale.value = command.value
+  i18nStore.setLanguage(command)
+}
 
 import { useDark } from '@vueuse/core'
-
 const isDark = useDark()
 
 import { Sunny, Moon } from '@element-plus/icons-vue'
@@ -17,12 +25,12 @@ const { user } = useUserStore()
   <div class="header">
     <el-dropdown @command="setLanguage">
       <span>
-        {{ language }}
+        {{ i18nStore.language.name }}
       </span>
       <template #dropdown>
         <el-dropdown-menu>
-          <el-dropdown-item v-for="item in Object.keys(mapObj)" :key="item" :command="item">{{
-            item
+          <el-dropdown-item v-for="item in languages" :key="item.value" :command="item">{{
+            item.name
           }}</el-dropdown-item>
         </el-dropdown-menu>
       </template>
@@ -56,9 +64,6 @@ const { user } = useUserStore()
     --el-switch-on-color: #272a2f;
     --el-switch-off-color: #eff0f3;
     --el-switch-border-color: #c2c2c4;
-  }
-  .language-selector {
-    width: 6.25rem;
   }
 }
 </style>
