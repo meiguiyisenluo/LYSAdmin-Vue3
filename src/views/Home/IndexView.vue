@@ -1,5 +1,5 @@
 <template>
-  <div>{{ $t('hello') }}</div>
+  <div>{{ t('testText') }}</div>
   <LYSUploader @success="onUploadSuccess" />
   <ElButton type="primary" @click="update">update</ElButton>
   <el-table mb-1 :data="[]" />
@@ -7,6 +7,18 @@
 </template>
 
 <script lang="ts" setup>
+import { useI18n } from 'vue-i18n'
+const { t } = useI18n({
+  messages: {
+    en: {
+      testText: 'hello',
+    },
+    'zh-cn': {
+      testText: '你好',
+    },
+  },
+})
+
 import { useUserStore } from '@/stores/user'
 const { user } = useUserStore()
 import LYSUploader from '@/components/LYSUploader.vue'

@@ -6,6 +6,8 @@ import { ElNotification } from 'element-plus'
 import useLogin from '@/hooks/useLogin'
 const { logout } = useLogin()
 
+import { i18n } from '@/stores/i18n'
+
 const service = axios.create({
   baseURL: '/api',
   timeout: 5000,
@@ -29,29 +31,24 @@ service.interceptors.response.use(
   (error) => {
     let message = undefined
     if (error.response) {
+      const key = 'network.error.' + error.response.status
+      message = i18n.global.t(key)
+      message = message === key ? i18n.global.t('network.error.default') : message
       switch (error.response.status) {
         case 401:
-          message = '未授权，请重新登录'
-          logout()
-          break
         case 403:
-          message = '授权已过期'
           logout()
-          break
-        case 404:
-          message = '资源不存在'
-
           break
         default:
-          message = '请求失败'
+          break
       }
     } else {
-      message = '网络错误或配置错误'
+      message = i18n.global.t('network.error.noResponse')
     }
 
     if (message) {
       ElNotification({
-        title: 'Network Error' + error.response.status,
+        title: i18n.global.t('network.error.title') + error.response.status,
         message,
         type: 'error',
       })

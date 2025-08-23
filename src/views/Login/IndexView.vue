@@ -1,19 +1,47 @@
 <template>
+  <div class="config">
+    <LanguageDropdown />
+    <ThemeSwitch />
+  </div>
   <el-tabs v-model="activeName" class="login-tabs">
-    <el-tab-pane label="WXLogin" name="WXLogin" v-if="false">
+    <el-tab-pane :label="t('label.WXLogin')" name="WXLogin">
       <WXLoginView @loginSuccess="loginSuccess" />
     </el-tab-pane>
-    <el-tab-pane label="Login" name="Login">
+    <el-tab-pane :label="t('label.login')" name="Login">
       <LoginView @loginSuccess="loginSuccess" />
     </el-tab-pane>
-    <el-tab-pane label="Register" name="Register">
+    <el-tab-pane :label="t('label.register')" name="Register">
       <RegisterView @registerSuccess="activeName = 'Login'" />
     </el-tab-pane>
   </el-tabs>
 </template>
 
 <script lang="ts" setup>
+import { useI18n } from 'vue-i18n'
+const { t } = useI18n({
+  messages: {
+    en: {
+      label: {
+        login: 'Login',
+        register: 'Register',
+        WXLogin: 'WXLogin',
+      },
+    },
+    'zh-cn': {
+      label: {
+        login: '登录',
+        register: '注册',
+        WXLogin: '微信登录',
+      },
+    },
+  },
+})
+
 import { ref } from 'vue'
+
+import LanguageDropdown from '@/components/LanguageDropdown.vue'
+import ThemeSwitch from '@/components/ThemeSwitch.vue'
+
 import LoginView from './LoginView.vue'
 import WXLoginView from './WXLoginView.vue'
 import RegisterView from './RegisterView.vue'
@@ -32,6 +60,17 @@ const loginSuccess = (user: User, token: string) => {
 </script>
 
 <style scoped>
+.config {
+  position: fixed;
+  right: 0;
+  top: 0;
+  padding: 1rem;
+  display: flex;
+  align-items: center;
+  .theme-switch {
+    margin-left: 1rem;
+  }
+}
 .login-tabs {
   width: 25rem;
   height: 25rem;

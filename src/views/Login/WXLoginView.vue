@@ -10,12 +10,12 @@ loadJs('http://res.wx.qq.com/connect/zh_CN/htmledition/js/wxLogin.js').then(() =
   new window.WxLogin({
     self_redirect: false,
     id: 'login_container',
-    appid: 'wx7f6684f0e0d66c77',
+    appid: '',
     scope: 'snsapi_login',
     redirect_uri: window.location.href,
     state: UUIDv4(),
     stylelite: 1,
-    onReady: function (isReady) {
+    onReady: function (isReady: boolean) {
       console.log(isReady)
     },
   })

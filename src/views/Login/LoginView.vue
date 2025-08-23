@@ -1,20 +1,52 @@
 <template>
   <el-form ref="formRef" :model="formData" :rules="rules" label-width="auto">
-    <el-form-item label="Username" prop="username">
+    <el-form-item :label="t('label.username')" prop="username">
       <el-input v-model="formData.username" />
     </el-form-item>
-    <el-form-item label="Password" prop="password">
+    <el-form-item :label="t('label.password')" prop="password">
       <el-input type="password" v-model="formData.password" />
     </el-form-item>
     <el-form-item>
-      <el-button type="primary" @click="onSubmit" :loading="loading" :disabled="loading"
-        >Login</el-button
-      >
+      <el-button type="primary" @click="onSubmit" :loading="loading" :disabled="loading">{{
+        t('buttonText')
+      }}</el-button>
     </el-form-item>
   </el-form>
 </template>
 
 <script lang="ts" setup>
+import { useI18n } from 'vue-i18n'
+const { t } = useI18n({
+  messages: {
+    en: {
+      rules: {
+        username: ['Please input Username', 'Length should be 11'],
+        password: ['Please input Password', 'Length should be 8 to 20'],
+      },
+      label: {
+        username: 'Username',
+        password: 'Password',
+      },
+      buttonText: 'Login',
+      loginSuccessTitle: 'Login Success',
+      loginFailedTitle: 'Login Failed',
+    },
+    'zh-cn': {
+      rules: {
+        username: ['请输入用户名', '长度应为11'],
+        password: ['请输入密码', '长度应为8 - 20'],
+      },
+      label: {
+        username: '用户名',
+        password: '密码',
+      },
+      buttonText: '登录',
+      loginSuccessTitle: '登录成功',
+      loginFailedTitle: '登录失败',
+    },
+  },
+})
+
 import { ref } from 'vue'
 
 import { login } from '@/api/login'
@@ -36,12 +68,12 @@ const formData = reactive<Form>({
 })
 const rules = reactive<FormRules<Form>>({
   username: [
-    { required: true, message: 'Please input Username', trigger: 'blur' },
-    { min: 11, max: 11, message: 'Length should be 11', trigger: 'blur' },
+    { required: true, message: t('rules.username.0'), trigger: 'blur' },
+    { min: 11, max: 11, message: t('rules.username.1'), trigger: 'blur' },
   ],
   password: [
-    { required: true, message: 'Please input Password', trigger: 'blur' },
-    { min: 8, max: 20, message: 'Length should be 8 to 20', trigger: 'blur' },
+    { required: true, message: t('rules.password.0'), trigger: 'blur' },
+    { min: 8, max: 20, message: t('rules.password.1'), trigger: 'blur' },
   ],
 })
 const onSubmit = async () => {
@@ -52,8 +84,8 @@ const onSubmit = async () => {
     login(formData)
       .then(({ headers, data }) => {
         ElNotification({
-          title: 'Login Success',
-          message: headers['lys-message'] ?? 'Login Success',
+          title: t('loginSuccessTitle'),
+          message: headers['lys-message'],
           type: 'success',
         })
         formRef.value?.resetFields()
@@ -61,8 +93,8 @@ const onSubmit = async () => {
       })
       .catch(({ headers }) => {
         ElNotification({
-          title: 'Login Failed',
-          message: headers['lys-message'] ?? 'Login Failed',
+          title: t('loginFailedTitle'),
+          message: headers['lys-message'],
           type: 'error',
         })
       })
