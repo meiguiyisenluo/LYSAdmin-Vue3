@@ -21,7 +21,6 @@ service.interceptors.request.use(
       config.headers['Lys-Token'] = tokenStore.token
     }
     config.headers['Lys-Language'] = language.value.value
-    config.headers['Accept-Language'] = language.value.value
     return config
   },
   (error) => Promise.reject(error),
