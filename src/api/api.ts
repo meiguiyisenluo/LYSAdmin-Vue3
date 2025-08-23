@@ -6,7 +6,7 @@ import { ElNotification } from 'element-plus'
 import useLogin from '@/hooks/useLogin'
 const { logout } = useLogin()
 
-import { i18n } from '@/stores/i18n'
+import { i18n, language } from '@/stores/i18n'
 
 const service = axios.create({
   baseURL: '/api',
@@ -20,6 +20,8 @@ service.interceptors.request.use(
       const tokenStore = useTokenStore()
       config.headers['Lys-Token'] = tokenStore.token
     }
+    config.headers['Lys-Language'] = language.value.value
+    config.headers['Accept-Language'] = language.value.value
     return config
   },
   (error) => Promise.reject(error),

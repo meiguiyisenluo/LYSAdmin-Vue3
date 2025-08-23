@@ -27,16 +27,17 @@ const elMapObj: Record<LangIndex, typeof el_zhCn> = {
   en: el_en,
 }
 
+export const language = ref<Lang>({ ...languages[0] })
+
 export const useI18nStore = defineStore(
   'i18n',
   () => {
-    const language = ref<Lang>({ ...languages[0] })
     const setLanguage = (lang: Lang) => {
       language.value = lang
     }
 
     const elLocale = computed(() => elMapObj[language.value.value])
-    
+
     return { language, setLanguage, elLocale }
   },
   {
