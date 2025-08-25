@@ -6,6 +6,7 @@
     :on-success="handleAvatarSuccess"
     :headers="{
       'Lys-Token': token,
+      'Lys-Language':language.value
     }"
     method="put"
   >
@@ -17,6 +18,8 @@
 <script lang="ts" setup>
 const emit = defineEmits(['success'])
 import { ref } from 'vue'
+
+import { language } from '@/stores/i18n'
 
 import type { UploadProps } from 'element-plus'
 import { Plus } from '@element-plus/icons-vue'

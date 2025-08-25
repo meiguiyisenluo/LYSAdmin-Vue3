@@ -28,10 +28,18 @@ service.interceptors.request.use(
 
 // 响应拦截器
 service.interceptors.response.use(
-  (response: AxiosResponse) => response,
+  (response: AxiosResponse) => {
+    console.log(response)
+    response.headers['lys-message'] = decodeURIComponent(response.headers['lys-message'])
+    return response
+  },
   (error) => {
     let message = undefined
     if (error.response) {
+      error.response.headers['lys-message'] = decodeURIComponent(
+        error.response.headers['lys-message'],
+      )
+
       const key = 'network.error.' + error.response.status
       message = i18n.global.t(key)
       message = message === key ? i18n.global.t('network.error.default') : message
