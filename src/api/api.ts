@@ -29,7 +29,6 @@ service.interceptors.request.use(
 // 响应拦截器
 service.interceptors.response.use(
   (response: AxiosResponse) => {
-    console.log(response)
     response.headers['lys-message'] = decodeURIComponent(response.headers['lys-message'])
     return response
   },

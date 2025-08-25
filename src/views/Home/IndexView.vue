@@ -23,12 +23,8 @@ import { useUserStore } from '@/stores/user'
 const { user } = useUserStore()
 import LYSUploader from '@/components/LYSUploader.vue'
 
-import { getUserList, updateUser } from '@/api/user'
+import { updateUser } from '@/api/user'
 import { ref } from 'vue'
-
-getUserList().then(({ data }) => {
-  console.log(data)
-})
 
 const avatarUrl = ref('')
 const onUploadSuccess = (res: { url: string }) => {

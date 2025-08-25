@@ -30,11 +30,19 @@ import ThemeSwitch from '@/components/ThemeSwitch.vue'
 
     <el-divider direction="vertical" />
 
-    <div>{{ user.nickname || user.username }}</div>
-
-    <el-divider direction="vertical" />
-
-    <ElButton type="warning" @click="logout" text>{{ t('loginOutButtonText') }}</ElButton>
+    <el-dropdown>
+      <span>
+        {{ user.nickname || user.username }}
+      </span>
+      <template #dropdown>
+        <el-dropdown-menu>
+          <el-dropdown-item @click="$router.push('/userInfo')"> 个人信息 </el-dropdown-item>
+          <el-dropdown-item divided>
+            <ElButton type="warning" @click="logout" text>{{ t('loginOutButtonText') }}</ElButton>
+          </el-dropdown-item>
+        </el-dropdown-menu>
+      </template>
+    </el-dropdown>
   </div>
 </template>
 
@@ -43,5 +51,7 @@ import ThemeSwitch from '@/components/ThemeSwitch.vue'
   display: flex;
   justify-content: flex-end;
   align-items: center;
+  width: 100%;
+  height: 100%;
 }
 </style>

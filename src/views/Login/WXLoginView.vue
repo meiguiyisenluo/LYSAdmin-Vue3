@@ -16,7 +16,7 @@ loadJs('http://res.wx.qq.com/connect/zh_CN/htmledition/js/wxLogin.js').then(() =
     state: UUIDv4(),
     stylelite: 1,
     onReady: function (isReady: boolean) {
-      console.log(isReady)
+      isReady
     },
   })
 })

@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import LYSHeader from '@/components/layout/LYSHeader.vue'
+import LYSFooter from '@/components/layout/LYSFooter.vue'
 </script>
 <template>
   <el-container>
@@ -11,7 +12,27 @@ import LYSHeader from '@/components/layout/LYSHeader.vue'
       <el-main>
         <RouterView />
       </el-main>
-      <el-footer>Footer</el-footer>
+      <el-footer>
+        <LYSFooter />
+      </el-footer>
     </el-container>
   </el-container>
 </template>
+
+<style scoped>
+.el-container {
+  height: 100%;
+  .el-aside {
+    background-color: var(--el-aside-bg-color);
+  }
+  .el-header {
+    background-color: var(--el-header-bg-color);
+  }
+  .el-main {
+    background-color: var(--el-main-bg-color);
+  }
+  .el-footer {
+    background-color: var(--el-footer-bg-color);
+  }
+}
+</style>

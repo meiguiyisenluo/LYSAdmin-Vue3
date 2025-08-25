@@ -5,10 +5,12 @@ import piniaPluginPersistedstate from 'pinia-plugin-persistedstate'
 import App from './App.vue'
 import router from './router'
 
-// if you just want to import css
 import 'element-plus/dist/index.css'
 import 'element-plus/theme-chalk/dark/css-vars.css'
 import '@/styles/dark/css-vars.css'
+import '@/styles/light/css-vars.css'
+
+import '@/styles/style.css'
 
 import { i18n } from '@/stores/i18n'
 
