@@ -14,6 +14,7 @@
       <RegisterView @registerSuccess="activeName = 'Login'" />
     </el-tab-pane>
   </el-tabs>
+  <LYSFooter class="footer" />
 </template>
 
 <script lang="ts" setup>
@@ -39,6 +40,7 @@ const { t } = useI18n({
 
 import { ref } from 'vue'
 
+import LYSFooter from '@/components/layout/LYSFooter.vue'
 import LanguageDropdown from '@/components/LanguageDropdown.vue'
 import ThemeSwitch from '@/components/ThemeSwitch.vue'
 
@@ -87,5 +89,11 @@ const loginSuccess = (user: User, token: string) => {
   &:deep() .el-tabs__nav-wrap {
     padding-left: 1rem;
   }
+}
+.footer {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  height: 3.9rem;
 }
 </style>

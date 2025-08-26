@@ -4,7 +4,7 @@ import LYSFooter from '@/components/layout/LYSFooter.vue'
 </script>
 <template>
   <el-container>
-    <el-aside width="200px">Aside</el-aside>
+    <el-aside></el-aside>
     <el-container>
       <el-header>
         <LYSHeader />
@@ -24,6 +24,7 @@ import LYSFooter from '@/components/layout/LYSFooter.vue'
   height: 100%;
   .el-aside {
     background-color: var(--el-aside-bg-color);
+    border-right: 1px solid var(--el-border-color);
   }
   .el-header {
     background-color: var(--el-header-bg-color);
