@@ -1,5 +1,7 @@
 <template>
-  <div>{{ t('userInfo') }}</div>
+  <div class="router_wrap">
+    <div>{{ t('userInfo') }}</div>
+  </div>
 </template>
 
 <script lang="ts" setup>

@@ -1,6 +1,9 @@
 html.dark {
-  --el-aside-bg-color: linear-gradient(to right, #151515, #181818);
+  --el-aside-bg-color: #1f1f1f;
   --el-header-bg-color: #1f1f1f;
-  --el-main-bg-color: #121212;
-  --el-footer-bg-color: #121212;
+  --el-main-bg-color: #1a1919;
+  --el-footer-bg-color: #1a1919;
+
+  --el-main-wrap-bg-color: #1f1f1f;
+  --el-main-wrap-shadow-color: #333131;
 }

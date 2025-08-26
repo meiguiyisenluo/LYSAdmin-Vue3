@@ -1,20 +1,22 @@
 <template>
-  <div class="config">
-    <LanguageDropdown />
-    <ThemeSwitch />
+  <div class="login_wrap">
+    <div class="config">
+      <LanguageDropdown />
+      <ThemeSwitch />
+    </div>
+    <el-tabs v-model="activeName" class="login-tabs">
+      <el-tab-pane :label="t('label.WXLogin')" name="WXLogin">
+        <WXLoginView @loginSuccess="loginSuccess" />
+      </el-tab-pane>
+      <el-tab-pane :label="t('label.login')" name="Login">
+        <LoginView @loginSuccess="loginSuccess" />
+      </el-tab-pane>
+      <el-tab-pane :label="t('label.register')" name="Register">
+        <RegisterView @registerSuccess="activeName = 'Login'" />
+      </el-tab-pane>
+    </el-tabs>
+    <LYSFooter class="footer" />
   </div>
-  <el-tabs v-model="activeName" class="login-tabs">
-    <el-tab-pane :label="t('label.WXLogin')" name="WXLogin">
-      <WXLoginView @loginSuccess="loginSuccess" />
-    </el-tab-pane>
-    <el-tab-pane :label="t('label.login')" name="Login">
-      <LoginView @loginSuccess="loginSuccess" />
-    </el-tab-pane>
-    <el-tab-pane :label="t('label.register')" name="Register">
-      <RegisterView @registerSuccess="activeName = 'Login'" />
-    </el-tab-pane>
-  </el-tabs>
-  <LYSFooter class="footer" />
 </template>
 
 <script lang="ts" setup>

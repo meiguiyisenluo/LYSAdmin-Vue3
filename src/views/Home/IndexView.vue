@@ -1,9 +1,11 @@
 <template>
-  <div>{{ t('testText') }}</div>
-  <LYSUploader @success="onUploadSuccess" />
-  <ElButton type="primary" @click="update">update</ElButton>
-  <el-table mb-1 :data="[]" />
-  <el-pagination :total="100" />
+  <div class="router_wrap">
+    <div>{{ t('testText') }}</div>
+    <LYSUploader @success="onUploadSuccess" />
+    <ElButton type="primary" @click="update">update</ElButton>
+    <el-table mb-1 :data="[]" />
+    <el-pagination :total="100" />
+  </div>
 </template>
 
 <script lang="ts" setup>

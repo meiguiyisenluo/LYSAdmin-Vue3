@@ -9,7 +9,11 @@ locale.value = i18nStore.language.value
 
 <template>
   <el-config-provider :locale="i18nStore.elLocale">
-    <RouterView />
+    <router-view v-slot="{ Component }">
+      <transition name="el-fade-in" mode="out-in">
+        <component :is="Component" />
+      </transition>
+    </router-view>
   </el-config-provider>
 </template>
 
