@@ -20,6 +20,9 @@
 </template>
 
 <script lang="ts" setup>
+defineOptions({
+  name: 'Login_Register',
+})
 import { useI18n } from 'vue-i18n'
 const { t } = useI18n({
   messages: {
