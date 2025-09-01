@@ -10,7 +10,6 @@ declare module 'vue' {
   export interface GlobalComponents {
     ElAside: typeof import('element-plus/es')['ElAside']
     ElButton: typeof import('element-plus/es')['ElButton']
-    ElCollapseTransition: typeof import('element-plus/es')['ElCollapseTransition']
     ElConfigProvider: typeof import('element-plus/es')['ElConfigProvider']
     ElContainer: typeof import('element-plus/es')['ElContainer']
     ElDivider: typeof import('element-plus/es')['ElDivider']
@@ -18,17 +17,12 @@ declare module 'vue' {
     ElDropdownItem: typeof import('element-plus/es')['ElDropdownItem']
     ElDropdownMenu: typeof import('element-plus/es')['ElDropdownMenu']
     ElFooter: typeof import('element-plus/es')['ElFooter']
-    ElForm: typeof import('element-plus/es')['ElForm']
-    ElFormItem: typeof import('element-plus/es')['ElFormItem']
     ElHeader: typeof import('element-plus/es')['ElHeader']
     ElIcon: typeof import('element-plus/es')['ElIcon']
-    ElInput: typeof import('element-plus/es')['ElInput']
     ElMain: typeof import('element-plus/es')['ElMain']
     ElPagination: typeof import('element-plus/es')['ElPagination']
     ElSwitch: typeof import('element-plus/es')['ElSwitch']
     ElTable: typeof import('element-plus/es')['ElTable']
-    ElTabPane: typeof import('element-plus/es')['ElTabPane']
-    ElTabs: typeof import('element-plus/es')['ElTabs']
     ElUpload: typeof import('element-plus/es')['ElUpload']
     LanguageDropdown: typeof import('./components/LanguageDropdown.vue')['default']
     LYSFooter: typeof import('./components/layout/LYSFooter.vue')['default']
@@ -37,6 +31,7 @@ declare module 'vue' {
     LYSUploader: typeof import('./components/LYSUploader.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
+    TestElInput: typeof import('./components/TestElInput.vue')['default']
     ThemeSwitch: typeof import('./components/ThemeSwitch.vue')['default']
   }
 }

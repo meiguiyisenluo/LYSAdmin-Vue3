@@ -1,5 +1,12 @@
 <template>
   <div class="router_wrap">
+    <ElButton @click="clearFunc">clearFunc</ElButton>
+    <TestElInput placeholder="qingshuru" v-model="value" @blur="blur" ref="TestElInputRef">
+      <template #prefix>prefix</template>
+      <template #suffix>suffix</template>
+      <template #append>append</template>
+      <template #prepend>prepend</template>
+    </TestElInput>
     <div>{{ t('testText') }}</div>
     <LYSUploader @success="onUploadSuccess" />
     <ElButton type="primary" @click="update">update</ElButton>
@@ -9,7 +16,6 @@
 </template>
 
 <script lang="ts" setup>
-
 defineOptions({
   name: 'HomeView',
 })
@@ -30,7 +36,7 @@ const { user } = useUserStore()
 import LYSUploader from '@/components/LYSUploader.vue'
 
 import { updateUser } from '@/api/user'
-import { ref } from 'vue'
+import { ref, useTemplateRef, type ComponentInstance } from 'vue'
 
 const avatarUrl = ref('')
 const onUploadSuccess = (res: { url: string }) => {
@@ -40,6 +46,12 @@ const update = () => {
   if (!avatarUrl.value) return
   updateUser(user.id, { avatar: avatarUrl.value })
 }
+
+import TestElInput from '@/components/TestElInput.vue'
+const value = ref('')
+const blur = console.log
+const TestElInputRef = useTemplateRef<ComponentInstance<typeof TestElInput>>('TestElInputRef')
+const clearFunc = () => TestElInputRef.value?.clear()
 </script>
 
 <style scoped></style>
