@@ -8,6 +8,9 @@
 defineOptions({
   name: 'TestElInput',
 })
+defineProps({
+  aaa: String,
+})
 import { h, getCurrentInstance, type ComponentInstance } from 'vue'
 import { ElInput } from 'element-plus'
 const vm = getCurrentInstance()

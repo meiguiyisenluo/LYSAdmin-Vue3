@@ -1,7 +1,7 @@
 <template>
   <div class="router_wrap">
     <ElButton @click="clearFunc">clearFunc</ElButton>
-    <TestElInput placeholder="qingshuru" v-model="value" @blur="blur" ref="TestElInputRef">
+    <TestElInput aaa="12" placeholder="qingshuru" v-model="value" @blur="blur" ref="TestElInputRef">
       <template #prefix>prefix</template>
       <template #suffix>suffix</template>
       <template #append>append</template>
