@@ -56,7 +56,7 @@ service.interceptors.response.use(
 
     if (message) {
       ElNotification({
-        title: i18n.global.t('network.error.title') + error.response.status,
+        title: i18n.global.t('network.error.title') + (error.response?.status ?? ''),
         message,
         type: 'error',
       })
