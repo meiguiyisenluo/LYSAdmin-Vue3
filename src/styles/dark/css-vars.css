@@ -1,9 +1,9 @@
 html.dark {
-  --el-aside-bg-color: #1f1f1f;
+  --el-aside-bg-color: #222121;
   --el-header-bg-color: #1f1f1f;
   --el-main-bg-color: #1a1919;
   --el-footer-bg-color: #1a1919;
 
-  --el-main-wrap-bg-color: #1f1f1f;
+  --el-main-wrap-bg-color: #222121;
   --el-main-wrap-shadow-color: #333131;
 }

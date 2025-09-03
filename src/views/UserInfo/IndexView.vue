@@ -1,5 +1,5 @@
 <template>
-  <div class="router_wrap">
+  <div class="UserInfo">
     <LYSUploader @success="onUploadSuccess" />
     <ElButton type="primary" @click="update">update</ElButton>
   </div>
@@ -7,7 +7,7 @@
 
 <script lang="ts" setup>
 defineOptions({
-  name: 'userInfo',
+  name: 'UserInfo',
 })
 import { useI18n } from 'vue-i18n'
 const { t } = useI18n({
@@ -39,4 +39,8 @@ const update = () => {
 }
 </script>
 
-<style scoped></style>
+<style scoped>
+.UserInfo{
+  padding: 1rem;
+}
+</style>

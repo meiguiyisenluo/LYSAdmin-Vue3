@@ -1,9 +1,5 @@
 <template>
   <div class="login_wrap">
-    <div class="config">
-      <LanguageDropdown />
-      <ThemeSwitch />
-    </div>
     <el-tabs v-model="activeName" class="login-tabs">
       <el-tab-pane :label="t('label.WXLogin')" name="WXLogin">
         <WXLoginView @loginSuccess="loginSuccess" />
@@ -46,8 +42,6 @@ const { t } = useI18n({
 import { ref } from 'vue'
 
 import LYSFooter from '@/components/layout/LYSFooter.vue'
-import LanguageDropdown from '@/components/LanguageDropdown.vue'
-import ThemeSwitch from '@/components/ThemeSwitch.vue'
 
 import LoginView from './LoginView.vue'
 import WXLoginView from './WXLoginView.vue'
@@ -67,17 +61,6 @@ const loginSuccess = (user: User, token: string) => {
 </script>
 
 <style scoped>
-.config {
-  position: fixed;
-  right: 0;
-  top: 0;
-  padding: 1rem;
-  display: flex;
-  align-items: center;
-  .theme-switch {
-    margin-left: 1rem;
-  }
-}
 .login-tabs {
   width: 25rem;
   height: 25rem;

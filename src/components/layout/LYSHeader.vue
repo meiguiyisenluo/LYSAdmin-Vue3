@@ -3,16 +3,23 @@ import { useI18n } from 'vue-i18n'
 const { t } = useI18n({
   messages: {
     en: {
+      weidengluText: 'Login',
+
       loginOutButtonText: 'Logout',
     },
     'zh-cn': {
+      weidengluText: '登录',
+
       loginOutButtonText: '登出',
     },
   },
 })
 
+import { useRouter } from 'vue-router'
+const router = useRouter()
+
 import useLogin from '@/hooks/useLogin'
-const { logout } = useLogin()
+const { logout, isLogin } = useLogin()
 import { useUserStore } from '@/stores/user'
 const { user } = useUserStore()
 
@@ -22,6 +29,8 @@ import ThemeSwitch from '@/components/ThemeSwitch.vue'
 
 <template>
   <div class="header">
+    <h1>LYS-Admin</h1>
+
     <LanguageDropdown />
 
     <el-divider direction="vertical" />
@@ -30,7 +39,7 @@ import ThemeSwitch from '@/components/ThemeSwitch.vue'
 
     <el-divider direction="vertical" />
 
-    <el-dropdown>
+    <el-dropdown v-if="isLogin">
       <span>
         {{ user.nickname || user.username }}
       </span>
@@ -43,6 +52,9 @@ import ThemeSwitch from '@/components/ThemeSwitch.vue'
         </el-dropdown-menu>
       </template>
     </el-dropdown>
+    <el-button v-else type="primary" text @click="router.push('/login')">{{
+      t('weidengluText')
+    }}</el-button>
   </div>
 </template>
 
@@ -53,5 +65,10 @@ import ThemeSwitch from '@/components/ThemeSwitch.vue'
   align-items: center;
   width: 100%;
   height: 100%;
+  h1 {
+    width: 12rem;
+    text-align: center;
+    margin-right: auto;
+  }
 }
 </style>

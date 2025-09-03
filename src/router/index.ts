@@ -5,28 +5,44 @@ const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
     {
-      path: '/login',
-      name: 'Login',
-      component: () => import('@/views/Login/IndexView.vue'),
-    },
-    {
       path: '/',
-      redirect: '/home',
-      name: 'LYSLayout',
-      component: () => import('@/components/layout/LYSLayout.vue'),
-      meta: {
-        needLogin: true,
-      },
       children: [
         {
-          path: '/home',
-          name: 'Home',
-          component: () => import('@/views/Home/IndexView.vue'),
+          path: '/login',
+          name: 'Login',
+          component: () => import('@/views/Login/IndexView.vue'),
         },
         {
           path: '/userInfo',
-          name: 'userInfo',
+          name: 'UserInfo',
           component: () => import('@/views/UserInfo/IndexView.vue'),
+          meta: {
+            needLogin: true,
+          },
+        },
+        {
+          path: '*',
+          name: 'LYSLayout',
+          component: () => import('@/components/layout/LYSLayout.vue'),
+          meta: {
+            needLogin: true,
+          },
+          children: [
+            {
+              path: '/',
+              redirect: '/home',
+            },
+            {
+              path: '/home',
+              name: 'Home',
+              component: () => import('@/views/Home/IndexView.vue'),
+            },
+            {
+              path: '/userManage',
+              name: 'UserManage',
+              component: () => import('@/views/UserManage/Index.vue'),
+            },
+          ],
         },
       ],
     },
