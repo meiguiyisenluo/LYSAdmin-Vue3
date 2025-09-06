@@ -15,13 +15,17 @@ const { t } = useI18n({
   },
 })
 
+import { UserFilled } from '@element-plus/icons-vue'
+
 import { useRouter } from 'vue-router'
 const router = useRouter()
 
 import useLogin from '@/hooks/useLogin'
 const { logout, isLogin } = useLogin()
+import { toRefs } from 'vue'
 import { useUserStore } from '@/stores/user'
-const { user } = useUserStore()
+const userStore = useUserStore()
+const { user } = toRefs(userStore)
 
 import LanguageDropdown from '@/components/LanguageDropdown.vue'
 import ThemeSwitch from '@/components/ThemeSwitch.vue'
@@ -40,9 +44,11 @@ import ThemeSwitch from '@/components/ThemeSwitch.vue'
     <el-divider direction="vertical" />
 
     <el-dropdown v-if="isLogin">
-      <span>
-        {{ user.nickname || user.username }}
-      </span>
+      <el-avatar v-if="user.avatar" :size="30" :src="user.avatar"> </el-avatar>
+      <el-avatar v-else-if="user.nickname" :size="30">
+        {{ user.nickname.length > 3 ? user.nickname[0] : user.nickname }}
+      </el-avatar>
+      <el-avatar v-else :size="30" :icon="UserFilled"> </el-avatar>
       <template #dropdown>
         <el-dropdown-menu>
           <el-dropdown-item @click="$router.push('/userInfo')"> 个人信息 </el-dropdown-item>

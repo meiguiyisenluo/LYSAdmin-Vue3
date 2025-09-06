@@ -6,6 +6,7 @@ export interface User {
   username: string
   role: string
   nickname: string | null
+  avatar: string | null
   email: string
   createdAt: string
   updatedAt: string
@@ -20,6 +21,7 @@ export const useUserStore = defineStore(
       username: '15914203799',
       role: 'user',
       nickname: null,
+      avatar: null,
       email: '1402175410@qq.com',
       createdAt: '2025-08-17T01:37:16.000Z',
       updatedAt: '2025-08-17T01:37:16.000Z',
@@ -27,7 +29,7 @@ export const useUserStore = defineStore(
     })
 
     const setUser = (newUser: User) => {
-      user.value = { ...user.value, ...newUser }
+      user.value = newUser
     }
 
     return { user, setUser }
