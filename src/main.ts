@@ -16,13 +16,13 @@ import { i18n } from '@/stores/i18n'
 
 const app = createApp(App)
 
-const pinia = createPinia()
-pinia.use(piniaPluginPersistedstate)
-app.use(pinia)
-app.use(router)
-app.use(i18n)
-
 import LYSPage from '@/components/layout/LYSPage.vue'
 app.component(LYSPage.name!, LYSPage)
 
+const pinia = createPinia()
+pinia.use(piniaPluginPersistedstate)
+app.use(pinia).use(router).use(i18n)
+
 app.mount('#app')
+
+import('@/api/login.ts').then(({ heartbeat }) => heartbeat())
