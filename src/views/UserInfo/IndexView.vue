@@ -1,8 +1,8 @@
 <template>
-  <div class="UserInfo">
+  <LYSPage :title="t('title')" class="UserInfo">
     <LYSUploader @success="onUploadSuccess" />
     <ElButton type="primary" @click="update">update</ElButton>
-  </div>
+  </LYSPage>
 </template>
 
 <script lang="ts" setup>
@@ -13,10 +13,10 @@ import { useI18n } from 'vue-i18n'
 const { t } = useI18n({
   messages: {
     en: {
-      userInfo: 'userInfo',
+      title: 'UserInfo',
     },
     'zh-cn': {
-      userInfo: '个人信息',
+      title: '个人信息',
     },
   },
 })
@@ -40,7 +40,7 @@ const update = () => {
 </script>
 
 <style scoped>
-.UserInfo{
+.UserInfo {
   padding: 1rem;
 }
 </style>

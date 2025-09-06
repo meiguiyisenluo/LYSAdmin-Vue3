@@ -1,6 +1,5 @@
 <template>
-  <div class="router_wrap">
-    <div>{{ t('testText') }}</div>
+  <LYSPage :title="t('title')" class="router_wrap">
     <ElButton @click="clearFunc">clearFunc</ElButton>
     <TestElInput aaa="12" placeholder="qingshuru" v-model="value" @blur="blur" ref="TestElInputRef">
       <template #prefix>prefix</template>
@@ -10,7 +9,7 @@
     </TestElInput>
     <el-table mb-1 :data="[]" />
     <el-pagination :total="100" />
-  </div>
+  </LYSPage>
 </template>
 
 <script lang="ts" setup>
@@ -21,10 +20,10 @@ import { useI18n } from 'vue-i18n'
 const { t } = useI18n({
   messages: {
     en: {
-      testText: 'hello',
+      title: 'Home',
     },
     'zh-cn': {
-      testText: '你好',
+      title: '首页',
     },
   },
 })

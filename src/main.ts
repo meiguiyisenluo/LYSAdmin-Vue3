@@ -22,4 +22,7 @@ app.use(pinia)
 app.use(router)
 app.use(i18n)
 
+import LYSPage from '@/components/layout/LYSPage.vue'
+app.component(LYSPage.name!, LYSPage)
+
 app.mount('#app')
