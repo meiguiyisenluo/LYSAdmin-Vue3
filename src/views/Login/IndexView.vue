@@ -56,7 +56,7 @@ const { login } = useLogin()
 const loginSuccess = (user: User, token: string) => {
   login(token, user)
 
-  router.push({ path: '/' })
+  router.replace({ path: '/' })
 }
 </script>
 
