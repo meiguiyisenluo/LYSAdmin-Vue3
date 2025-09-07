@@ -15,11 +15,19 @@ import LYSHeader from '@/components/layout/LYSHeader.vue'
       <el-header>
         <LYSHeader />
       </el-header>
-
       <router-view v-slot="{ Component }">
-        <transition name="el-fade-in" mode="out-in">
-          <component :is="Component" />
-        </transition>
+        <template v-if="Component">
+          <transition name="el-fade-in-linear" mode="out-in">
+            <keep-alive>
+              <Suspense timeout="0">
+                <component :is="Component" />
+                <template #fallback>
+                  <div v-loading="true" style="width: 100%; height: 100%"></div>
+                </template>
+              </Suspense>
+            </keep-alive>
+          </transition>
+        </template>
       </router-view>
     </el-container>
   </el-config-provider>

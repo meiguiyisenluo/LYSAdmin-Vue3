@@ -5,6 +5,12 @@
 defineOptions({
   name: 'UserManage',
 })
+
+import { onUnmounted } from 'vue'
+onUnmounted(() => {
+  console.log('UserManage 被销毁了')
+})
+
 import { useI18n } from 'vue-i18n'
 const { t } = useI18n({
   messages: {
