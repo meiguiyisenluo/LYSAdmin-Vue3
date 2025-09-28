@@ -22,3 +22,12 @@ export const login = (data: { username: string; password: string }) => {
     data,
   })
 }
+
+// 心跳接口
+// 检查登录状态
+export const heartbeat = () => {
+  return service({
+    url: '/user/heartbeat',
+    method: 'post',
+  })
+}

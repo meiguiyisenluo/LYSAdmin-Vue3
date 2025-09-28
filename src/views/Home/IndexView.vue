@@ -1,8 +1,7 @@
 <template>
-  <div class="router_wrap">
-    <div>{{ t('testText') }}</div>
+  <LYSPage :title="t('title')" class="router_wrap">
     <ElButton @click="clearFunc">clearFunc</ElButton>
-    <TestElInput aaa="12" placeholder="qingshuru" v-model="value" @blur="blur" ref="TestElInputRef">
+    <TestElInput aaa="12" placeholder="qingshuru" v-model="value" ref="TestElInputRef">
       <template #prefix>prefix</template>
       <template #suffix>suffix</template>
       <template #append>append</template>
@@ -10,21 +9,25 @@
     </TestElInput>
     <el-table mb-1 :data="[]" />
     <el-pagination :total="100" />
-  </div>
+  </LYSPage>
 </template>
 
 <script lang="ts" setup>
 defineOptions({
   name: 'HomeView',
 })
+import { onUnmounted } from 'vue'
+onUnmounted(() => {
+  console.log('HomeView 被销毁了')
+})
 import { useI18n } from 'vue-i18n'
 const { t } = useI18n({
   messages: {
     en: {
-      testText: 'hello',
+      title: 'Home',
     },
     'zh-cn': {
-      testText: '你好',
+      title: '首页',
     },
   },
 })
@@ -32,7 +35,6 @@ const { t } = useI18n({
 import { ref, useTemplateRef, type ComponentInstance } from 'vue'
 import TestElInput from '@/components/TestElInput.vue'
 const value = ref('')
-const blur = console.log
 const TestElInputRef = useTemplateRef<ComponentInstance<typeof TestElInput>>('TestElInputRef')
 const clearFunc = () => TestElInputRef.value?.clear()
 </script>

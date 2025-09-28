@@ -8,9 +8,18 @@ import LYSFooter from '@/components/layout/LYSFooter.vue'
     <el-container>
       <el-main>
         <router-view v-slot="{ Component }">
-          <transition name="el-zoom-in-left" mode="out-in">
-            <component :is="Component" />
-          </transition>
+          <template v-if="Component">
+            <transition name="el-fade-in-linear" mode="out-in">
+              <keep-alive include="HomeView,UserManage">
+                <Suspense timeout="0">
+                  <component :is="Component" />
+                  <template #fallback>
+                    <div v-loading="true" style="width: 100%; height: 100%"></div>
+                  </template>
+                </Suspense>
+              </keep-alive>
+            </transition>
+          </template>
         </router-view>
       </el-main>
       <el-footer>
